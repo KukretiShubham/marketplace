@@ -1,0 +1,1 @@
+export const CollectionContractAddress = "0xaff48d77e670B9D4EF29Ac494bcB02A8B77ff348";
