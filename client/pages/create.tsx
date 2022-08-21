@@ -1,5 +1,18 @@
-
+import { useEffect, useState } from 'react'
+import { useRouter } from 'next/router'
+import { createNewCollection } from "../functions/factoryFunctions"
 export default function Create() {
+
+    const [CollectionName, setCollectionName] = useState({ collectionName: ''})
+    const [CollectionSymbol, setCollectionSymbol] = useState({ collectionSymbol: ''})
+    const [Whitelistedfrens, setWhitelistedfrens] = useState({ whitelistedfrens: ''})
+    const [TierURIs, setTierURIs] = useState({ tierURIs: ''})
+    const create = async () => {
+        const whitelistedfrensArray = Whitelistedfrens.whitelistedfrens.split(",")
+        const TierURIsArray = TierURIs.tierURIs.split(",")
+        const receipt = await createNewCollection(CollectionName.collectionName, CollectionSymbol.collectionSymbol,whitelistedfrensArray, TierURIsArray);
+        console.log(receipt);
+      };
     return (
       <div className="">
         <form className="space-y-8 divide-y divide-white m-10">
@@ -22,6 +35,7 @@ export default function Create() {
                       autoComplete="given-name"
                       placeholder="Enter Collection Name"
                       className="max-w-lg block w-full shadow-sm sm:max-w-xs sm:text-sm border-white rounded-md"
+                      onChange={e => setCollectionName({ ...CollectionName, collectionName: e.target.value })}
                     />
                   </div>
                 </div>
@@ -38,6 +52,7 @@ export default function Create() {
                       autoComplete="family-name"
                       placeholder="Enter Collection Symbol"
                       className="max-w-lg block w-full shadow-sm focus:ring-indigo-500 focus:border-white sm:max-w-xs sm:text-sm border-white rounded-md"
+                      onChange={e => setCollectionSymbol({ ...CollectionSymbol, collectionSymbol: e.target.value })}
                     />
                   </div>
                 </div>
@@ -54,6 +69,7 @@ export default function Create() {
                       autoComplete="email"
                       placeholder="Enter Whitelisted Frens Addresses separated by comma"
                       className="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm border-white rounded-md"
+                      onChange={e => setWhitelistedfrens({ ...Whitelistedfrens, whitelistedfrens: e.target.value })}
                     />
                   </div>
                 </div>    
@@ -69,6 +85,7 @@ export default function Create() {
                       autoComplete="street-address"
                       placeholder="Enter Tier URIs separated by comma"
                       className="block max-w-lg w-full shadow-sm focus:ring-indigo-500 focus:border-white sm:text-sm border-white rounded-md"
+                      onChange={e => setTierURIs({ ...TierURIs, tierURIs: e.target.value })}
                     />
                   </div>
             
@@ -82,7 +99,7 @@ export default function Create() {
               <button
                 type="submit"
                 className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              >
+              onClick={create}>
                 Create
               </button>
             </div>
