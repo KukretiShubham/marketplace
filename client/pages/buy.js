@@ -2,15 +2,28 @@ import { useState } from 'react'
 import { Disclosure, RadioGroup, Tab } from '@headlessui/react'
 import { StarIcon } from '@heroicons/react/solid'
 import { HeartIcon, MinusSmIcon, PlusSmIcon } from '@heroicons/react/outline'
-
+import { mint } from "../functions/collectionfunction"
 const product = {
   images: [
     {
       id: 1,
-      name: 'Angled view',
-      src: 'https://tailwindui.com/img/ecommerce-images/product-page-03-product-01.jpg',
-      alt: 'Angled front view with bag zipped and handles upright.',
+      name: 'Tier 1',
+      src: 'https://ipfs.io/ipfs/bafkreidj4apqxzksqbefleecs4xn2562az64d5bt5m7it2io2jsoipp3x4',
+      alt: 'Tier 1',
     },
+    {
+      id: 2,
+      name: 'Tier 2',
+      src: 'https://ipfs.io/ipfs/bafkreibkr5iaps3pszxzoob2qw6g4sstnupgh7uyla56rh2ovb3skdpwnm',
+      alt: 'Tier 2',
+
+    },
+    {
+      id: 3,
+      name: 'Tier 3',
+      src: 'https://ipfs.io/ipfs/bafkreidtq6pkcyy6ywm5hlkbwd7x2t23mk2qvoxtkid5bvpjcbs7am2rmi',
+      alt: 'Tier 3',
+    }
     // More images...
   ],
   colors: [
@@ -19,7 +32,7 @@ const product = {
     { name: 'Washed Gray', bgColor: 'bg-gray-500', selectedColor: 'ring-gray-500' },
   ],
   description: `
-    <p>The Zip Tote Basket is the perfect midpoint between shopping tote and comfy backpack. With convertible straps, you can hand carry, should sling, or backpack this convenient and spacious bag. The zip top and durable canvas construction keeps your goods protected for all-day use.</p>
+    <p>NFTs based on Tiers. Each Tier brings some level of Perks</p>
   `,
 }
 
@@ -27,9 +40,12 @@ function classNames(...classes) {
   return classes.filter(Boolean).join(' ')
 }
 
-export default function Example() {
+export default function Buy() {
   const [selectedColor, setSelectedColor] = useState(product.colors[0])
-
+  const buy = async () => {
+    const receipt = await mint(tokenId);
+    console.log(receipt);
+  };
   return (
     <div className="bg-white">
       <div className="max-w-2xl mx-auto py-16 px-4 sm:py-24 sm:px-6 lg:max-w-7xl lg:px-8">
@@ -94,43 +110,7 @@ export default function Example() {
               />
             </div>
 
-            <form className="mt-6">
-              {/* Colors */}
-              <div>
-                <h3 className="text-sm text-gray-600">Color</h3>
-
-                <RadioGroup value={selectedColor} onChange={setSelectedColor} className="mt-2">
-                  <RadioGroup.Label className="sr-only">Choose a color</RadioGroup.Label>
-                  <span className="flex items-center space-x-3">
-                    {product.colors.map((color) => (
-                      <RadioGroup.Option
-                        key={color.name}
-                        value={color}
-                        className={({ active, checked }) =>
-                          classNames(
-                            color.selectedColor,
-                            active && checked ? 'ring ring-offset-1' : '',
-                            !active && checked ? 'ring-2' : '',
-                            '-m-0.5 relative p-0.5 rounded-full flex items-center justify-center cursor-pointer focus:outline-none'
-                          )
-                        }
-                      >
-                        <RadioGroup.Label as="span" className="sr-only">
-                          {color.name}
-                        </RadioGroup.Label>
-                        <span
-                          aria-hidden="true"
-                          className={classNames(
-                            color.bgColor,
-                            'h-8 w-8 border border-black border-opacity-10 rounded-full'
-                          )}
-                        />
-                      </RadioGroup.Option>
-                    ))}
-                  </span>
-                </RadioGroup>
-              </div>
-
+            <form className="mt-10">
               <div className="mt-10 flex sm:flex-col1">
                 <button
                   type="submit"
