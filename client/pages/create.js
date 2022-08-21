@@ -10,12 +10,13 @@ export default function Create() {
     const create = async () => {
         const whitelistedfrensArray = Whitelistedfrens.whitelistedfrens.split(",")
         const TierURIsArray = TierURIs.tierURIs.split(",")
-        const receipt = await createNewCollection(CollectionName.collectionName, CollectionSymbol.collectionSymbol,whitelistedfrensArray, TierURIsArray);
+        console.log("Whitelisted array => ",whitelistedfrensArray)
+        console.log("TierURIs array => ",TierURIsArray)
+        const receipt = await createNewCollection(CollectionName.collectionName, CollectionSymbol.collectionSymbol, TierURIsArray, whitelistedfrensArray);
         console.log(receipt);
       };
     return (
       <div className="">
-        <form className="space-y-8 divide-y divide-white m-10">
           <div className="space-y-8 divide-y divide-white sm:space-y-5">
             <div className="pt-8 space-y-6 sm:pt-10 sm:space-y-5">
               <div>
@@ -99,12 +100,11 @@ export default function Create() {
               <button
                 type="submit"
                 className="ml-3 inline-flex justify-center py-2 px-4 border border-transparent shadow-sm text-sm font-medium rounded-md text-white bg-indigo-600 hover:bg-indigo-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
-              onClick={create}>
+                onClick={create}>
                 Create
               </button>
             </div>
           </div>
-        </form>
       </div>
     )
   }
