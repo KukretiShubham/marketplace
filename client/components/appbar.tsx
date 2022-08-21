@@ -35,8 +35,8 @@ const NAV_LINKS = [
     url: "/create",
   },
   {
-    name: "Panchayat",
-    url: "/panchayat",
+    name: "Buy",
+    url: "/buy",
   },
 ];
 
