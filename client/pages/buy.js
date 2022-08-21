@@ -6,20 +6,20 @@ import { mint } from "../functions/collectionfunction"
 const product = {
   images: [
     {
-      id: 1,
+      id: 0,
       name: 'Tier 1',
       src: 'https://ipfs.io/ipfs/bafkreidj4apqxzksqbefleecs4xn2562az64d5bt5m7it2io2jsoipp3x4',
       alt: 'Tier 1',
     },
     {
-      id: 2,
+      id: 1,
       name: 'Tier 2',
       src: 'https://ipfs.io/ipfs/bafkreibkr5iaps3pszxzoob2qw6g4sstnupgh7uyla56rh2ovb3skdpwnm',
       alt: 'Tier 2',
 
     },
     {
-      id: 3,
+      id: 2,
       name: 'Tier 3',
       src: 'https://ipfs.io/ipfs/bafkreidtq6pkcyy6ywm5hlkbwd7x2t23mk2qvoxtkid5bvpjcbs7am2rmi',
       alt: 'Tier 3',
@@ -41,9 +41,8 @@ function classNames(...classes) {
 }
 
 export default function Buy() {
-  const [selectedColor, setSelectedColor] = useState(product.colors[0])
-  const buy = async () => {
-    const receipt = await mint(tokenId);
+  const buy = async (id) => {
+    const receipt = await mint(id);
     console.log(receipt);
   };
   return (
@@ -110,17 +109,29 @@ export default function Buy() {
               />
             </div>
 
-            <form className="mt-10">
               <div className="mt-10 flex sm:flex-col1">
                 <button
                   type="submit"
-                  className="max-w-xs flex-1 bg-[#f3a01b] border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500 sm:w-full"
+                  className="max-w-xs m-2 flex-1 bg-[#f3a01b] border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500 sm:w-full"
+                  onClick={() => buy(0)}
                 >
-                  Buy
+                  Buy Tier 1
+                </button>
+                <button
+                  type="submit"
+                  className="max-w-xs m-2 flex-1 bg-[#f3a01b] border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500 sm:w-full"
+                  onClick={() => buy(1)}
+                >
+                  Buy Tier 2
+                </button>
+                <button
+                  type="submit"
+                  className="max-w-xs m-2 flex-1 bg-[#f3a01b] border border-transparent rounded-md py-3 px-8 flex items-center justify-center text-base font-medium text-white hover:bg-yellow-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-offset-gray-50 focus:ring-indigo-500 sm:w-full"
+                  onClick={() => buy(2)}
+                >
+                  Buy Tier 3
                 </button>
               </div>
-            </form>
-
           </div>
         </div>
       </div>

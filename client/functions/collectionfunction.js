@@ -1,6 +1,6 @@
 import Web3Modal from 'web3modal'
 import { ethers } from 'ethers'
-import { CollectionABI } from "../ABI/factoryabi";
+import { CollectionABI } from "../ABI/CollectionABI";
 import { CollectionContractAddress} from "../address/AddressCollection";
 
 export const mint = async (idno) =>{
